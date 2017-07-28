@@ -1,6 +1,5 @@
 import React from "react";
-import { Route }  from "react-router-dom";
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardHeader, CardTitle, CardText} from 'material-ui/Card';
 
 
 class UserDetail extends React.Component {
