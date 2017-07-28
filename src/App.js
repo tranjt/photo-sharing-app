@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route }  from "react-router-dom";
-import { connect } from "react-redux";
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -9,12 +8,9 @@ import Drawer from 'material-ui/Drawer';
 
 import UserList from "./components/UserList";
 import UserDetail from "./components/UserDetail";
-import { getUsers } from "./actions/action";
 
 injectTapEventPlugin();
 // use list instead of card
-
-
 
 class App extends Component {
 
@@ -23,12 +19,7 @@ class App extends Component {
     this.state = {open: true};
   }
 
-  componentDidMount() {
-    this.props.getUsers();
-  }
-
-  render() {
-    const users = this.props.users;
+  render() {    
     
     return (       
         <MuiThemeProvider>
@@ -38,25 +29,17 @@ class App extends Component {
                 iconClassNameRight="muidocs-icon-navigation-expand-more"
                  style={{ position: "fixed" }}
               />
-            <div style={{ display: 'flex', paddingTop: 64  }}>   
-              
+            <div style={{ display: 'flex', paddingTop: 64 }}>
               <Drawer  containerStyle={{height: 'calc(100% - 64px)',top: 64}} open={this.state.open}  docked={true}>
-                <UserList users={users}/>
+                <UserList />
               </Drawer>
-              
-              <div  style={{flex: 1, padding: '10px', paddingLeft: "268px" }} >             
-                {users.map(user => {
-                  return (
-                    <Route 
-                      key={user._id}               
+              <div  style={{ flex: 1, padding: '10px', paddingLeft: "268px" }} >
+                    
+                    <Route                                     
                       path={"/users/:_id"}                
                       component={UserDetail}
                     />
-                  );
-                })}
-
               </div>
-              
             </div>
           </div>
         </MuiThemeProvider>
@@ -64,10 +47,5 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    users: state.users
-  }
-}
 
-export default connect(mapStateToProps, { getUsers })(App);
+export default App;

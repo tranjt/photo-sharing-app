@@ -9,7 +9,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import './index.css';
 import App from './App';
-import rootReducer from "./reducer/rootReducer";
+import rootReducer from "./reducers/rootReducer";
 
 const store = createStore(
     rootReducer, 
