@@ -16,7 +16,9 @@ const styles = {
 class UserPhotos extends React.Component {
 
     componentDidMount() {
-        this.props.getPhotos();
+        if (!this.props.preFetch) {
+            this.props.getPhotos();
+        }
     }
 
     render() {
@@ -60,8 +62,9 @@ class UserPhotos extends React.Component {
 function mapStateToProps(state, props) {
     if (props.match.params._id) {
         return {
-            photos: state.photos.filter(photo => photo.user_id === props.match.params._id),
-            user: state.users.find(user => user._id === props.match.params._id)
+            photos: state.photos.all.filter(photo => photo.user_id === props.match.params._id),
+            user: state.users.find(user => user._id === props.match.params._id),
+            preFetch: state.photos.preFetch
         }
     }
 }
