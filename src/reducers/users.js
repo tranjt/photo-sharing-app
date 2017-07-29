@@ -1,7 +1,7 @@
-import { SET_USERS } from "../actions/action";
+import { SET_USERS } from "../actions/actions";
 
-export default function users( state = [], action = {}) {
-    switch(action.type) {
+export default function users(state = [], action = {}) {
+    switch (action.type) {
         case SET_USERS:
             return [
                 ...state,
