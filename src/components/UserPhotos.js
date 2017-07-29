@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Card, CardHeader, CardTitle, CardText, CardActions, CardMedia } from 'material-ui/Card';
-import { List, ListItem } from 'material-ui/List';
+import { Card, CardTitle, CardMedia } from 'material-ui/Card';
 
 import { getPhotos } from "../actions/actions";
 
@@ -43,10 +42,12 @@ class UserPhotos extends React.Component {
                         {photos.map(photo => {
                             return (
                                 <div className='col s12 m3' key={photo._id} >
-                                    <Card style={styles.card} zDepth={2}>
-                                        <CardMedia>
-                                            <img src={require(`../images/${photo.file_name}`)} alt="" style={styles.cardImg} />
-                                        </CardMedia>
+                                    <Card style={styles.card} zDepth={2}  >
+                                        <Link to={`/users/${user._id}/photo/${photo._id}`}  >
+                                            <CardMedia>
+                                                <img src={require(`../images/${photo.file_name}`)} alt="" style={styles.cardImg} />
+                                            </CardMedia>
+                                        </Link>
                                         <CardTitle title={`${photo.file_name}`} subtitle={`Created: ${photo.date_time}`} />
                                     </Card>
                                 </div>

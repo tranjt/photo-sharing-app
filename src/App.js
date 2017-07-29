@@ -10,6 +10,7 @@ import './styles/materialize-grid.css'
 import UserList from "./components/UserList";
 import UserDetail from "./components/UserDetail";
 import UserPhotos from "./components/UserPhotos";
+import Photo from "./components/Photo";
 
 injectTapEventPlugin();
 
@@ -48,13 +49,19 @@ class App extends Component {
             </Drawer>
             <div style={styles.master} >
               <Route
-                path={"/users/:_id"}
+                exact path={"/users/:_id"}
                 component={UserDetail}
+              />
+              <Route
+                path={"/users/:_id/photo/:_id"}
+                component={Photo}
               />
               <Route
                 path={"/photos/:_id"}
                 component={UserPhotos}
               />
+
+
             </div>
           </div>
         </div>
