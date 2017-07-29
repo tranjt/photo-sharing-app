@@ -1,8 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
-import {Card, CardHeader, CardTitle, CardText} from 'material-ui/Card';
+import { Link }  from "react-router-dom";
+import {Card, CardHeader, CardTitle, CardText, CardActions, CardMedia} from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
+import ImagePhotoLibrary from 'material-ui/svg-icons/image/photo-library';
+import RaisedButton from 'material-ui/RaisedButton';
+
+
+
+const styles = {
+  button: {
+    margin: 12,
+  },
+   card: { borderLeft: 'solid 4px #f44336', flex: 1, marginRight: '1em' },
+}
 
 class UserDetail extends React.Component { 
 
@@ -13,10 +25,10 @@ class UserDetail extends React.Component {
         if (!user) {
             return <div>Loading...</div>
         } 
-          console.log(user);
+          
         return (
 
-             <Card>
+             <Card >
                 <CardHeader
                   title={`${user.first_name} ${user.last_name}`}
                   subtitle="Detail page"
@@ -29,20 +41,25 @@ class UserDetail extends React.Component {
 
   <div  style={{flex: 1, margin: '1em' }}>
             <Card >
-              <CardTitle title='Card title' subtitle='Card subtitle' />
-              <CardText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam
-                sed pellentesque. Aliquam dui mauris, mattis quis lacus id,
-                pellentesque lobortis odio.
-              </CardText>
+              <CardTitle title='Activities' subtitle='Card subtitle' />
+              <CardActions>
+                <Link to={`/photos/${user._id}`}>
+                <RaisedButton
+                  label="View Photos "
+                  labelPosition="before"
+                  primary={true}
+                  icon={<ImagePhotoLibrary />}
+                  style={styles.button}
+                />
+                </Link>
+              </CardActions>
             </Card>
       </div>
 
   <div  style={{flex: 1, margin: '1em'}}>
             <Card>
               <CardTitle title='Description'  />
+               <Divider />
               <CardText>
                 {`${user.description}`}
               </CardText>
@@ -81,7 +98,7 @@ class UserDetail extends React.Component {
 <div style={{ display: 'flex', justifyContent: 'space-around' }}>   
 
 
-            <Card style={{ width: '350px', margin: "20px" }}>
+            <Card style={{ width: '350px', margin: "20px" }} zDepth={2} >
               <CardTitle title='Card title' subtitle='Card subtitle' />
               <CardText>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
@@ -93,7 +110,7 @@ class UserDetail extends React.Component {
             </Card>
      
 
-            <Card style={{ width: '350px',  margin: "20px"}}>
+            <Card style={{ width: '350px',  margin: "20px"}} zDepth={2} >
               <CardTitle title='Card title' subtitle='Card subtitle' />
               <CardText>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
@@ -106,8 +123,13 @@ class UserDetail extends React.Component {
  
 
 
-            <Card style={{ width: '350px', margin: "20px" }}>
+            <Card style={{ width: '350px', margin: "20px" }} zDepth={2}>
               <CardTitle title='Card title' subtitle='Card subtitle' />
+              <CardMedia
+                overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+              >
+                <img src="https://upload.wikimedia.org/wikipedia/en/3/32/Ben_Kenobi.png" alt="" />
+              </CardMedia>
               <CardText>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
                 mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.

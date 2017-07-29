@@ -5,12 +5,22 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
+import './styles/materialize-grid.css'
 
 import UserList from "./components/UserList";
 import UserDetail from "./components/UserDetail";
+import UserPhoto from "./components/UserPhoto";
+
 
 injectTapEventPlugin();
 // use list instead of card
+
+const style = {
+  master: { flex: 1, padding: '10px', paddingLeft: "268px", background: "#f1f1f1",  height: "90vh" },
+  drawer: {height: 'calc(100% - 64px)',top: 64},
+  appBar: { position: "fixed" }
+}
+
 
 class App extends Component {
 
@@ -23,21 +33,28 @@ class App extends Component {
     
     return (       
         <MuiThemeProvider>
-          <div>
+          <div >
               <AppBar
                 title="Title"
                 iconClassNameRight="muidocs-icon-navigation-expand-more"
-                 style={{ position: "fixed" }}
+                style={style.appBar}
               />
             <div style={{ display: 'flex', paddingTop: 64 }}>
-              <Drawer  containerStyle={{height: 'calc(100% - 64px)',top: 64}} open={this.state.open}  docked={true}>
+              <Drawer  
+                containerStyle={style.drawer} 
+                open={this.state.open}  
+                docked={true}
+              >
                 <UserList />
               </Drawer>
-              <div  style={{ flex: 1, padding: '10px', paddingLeft: "268px" }} >
-                    
-                    <Route                                     
+              <div  style={style.master} >
+                    <Route                            
                       path={"/users/:_id"}                
                       component={UserDetail}
+                    />
+                    <Route                             
+                      path={"/photos/:_id"}                
+                      component={UserPhoto}
                     />
               </div>
             </div>
