@@ -2,18 +2,40 @@ import React from "react";
 import { connect } from "react-redux";
 import { Card, CardMedia } from 'material-ui/Card';
 import { getPhotos } from "../actions/actions";
+// import LightBox from "./LightBox";
 
 const styles = {
     cardContainer: { display: 'flex', justifyContent: 'space-around' },
-    cardFixedWith: { maxWidth: '35%', margin: "20px" }
+    cardFixedWith: { maxWidth: '80%', margin: "20px" }
 }
 
 class Photo extends React.Component {
+
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         displayLightBox: false
+    //     }
+    //     this.openLightbox = this.openLightbox.bind(this);
+    //     this.closeLightbox = this.closeLightbox.bind(this);
+    // }
+
+
     componentDidMount() {
         if (!this.props.preFetch) {
             this.props.getPhotos();
         }
     }
+
+    // openLightbox(event) {
+    //     event.preventDefault();
+    //     this.setState({ displayLightBox: true });
+    // }
+
+    // closeLightbox(event) {
+    //     event.stopPropagation();
+    //     this.setState({ displayLightBox: false });
+    // }
 
     render() {
         const { photo } = this.props;
@@ -21,20 +43,23 @@ class Photo extends React.Component {
         if (!photo) {
             return <div>Loading...</div>
         }
-        console.log(photo);
+
         return (
-            <Card zDepth={2}  >
-                <div style={styles.cardContainer}>
-                    <Card style={styles.cardFixedWith} zDepth={1}>
-                        <CardMedia >
-                            <img src={require(`../images/${photo.file_name}`)} alt="" />
-                        </CardMedia>
-                        <div>   
-                            
-                        </div>
-                    </Card>
-                </div>
-            </Card>
+            <div>
+                <Card zDepth={2}  >
+                    <div style={styles.cardContainer} onClick={this.openLightbox}>
+                        <Card style={styles.cardFixedWith} zDepth={1}>
+                            <CardMedia >
+                                <img src={require(`../images/${photo.file_name}`)} alt="" />
+                            </CardMedia>
+                            <div>
+
+                            </div>
+                        </Card>
+                    </div>
+                </Card>
+                 {/* {this.state.displayLightBox ? <LightBox photo={photo} closeHandler={this.closeLightbox} /> : null}  */}
+            </div>
         )
     }
 }

@@ -6,6 +6,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import './styles/materialize-grid.css'
+import './App.css'
 
 import UserList from "./components/UserList";
 import UserDetail from "./components/UserDetail";
