@@ -1,12 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Card, CardMedia } from 'material-ui/Card';
+import { Card, CardMedia, CardText, CardTitle } from 'material-ui/Card';
+import Divider from 'material-ui/Divider';
 import { getPhotos } from "../actions/actions";
 // import LightBox from "./LightBox";
 
 const styles = {
     cardContainer: { display: 'flex', justifyContent: 'space-around' },
-    cardFixedWith: { maxWidth: '80%', margin: "20px" }
+    cardFixedWith: { maxWidth: '80%', margin: "20px" },
+    comments: { padding: "10px" }
 }
 
 class Photo extends React.Component {
@@ -17,7 +19,7 @@ class Photo extends React.Component {
     //         displayLightBox: false
     //     }
     //     this.openLightbox = this.openLightbox.bind(this);
-    //     this.closeLightbox = this.closeLightbox.bind(this);
+    //     this.closeLightbox = this.closeLightbox.bind(this);        
     // }
 
 
@@ -35,7 +37,7 @@ class Photo extends React.Component {
     // closeLightbox(event) {
     //     event.stopPropagation();
     //     this.setState({ displayLightBox: false });
-    // }
+    // } 
 
     render() {
         const { photo } = this.props;
@@ -43,7 +45,7 @@ class Photo extends React.Component {
         if (!photo) {
             return <div>Loading...</div>
         }
-
+        console.log(photo);
         return (
             <div>
                 <Card zDepth={2}  >
@@ -52,13 +54,22 @@ class Photo extends React.Component {
                             <CardMedia >
                                 <img src={require(`../images/${photo.file_name}`)} alt="" />
                             </CardMedia>
-                            <div>
-
-                            </div>
+                            <div style={styles.comments}> {photo.comments ? `Comments (${photo.comments.length})` : "Comments (0)"}</div>
+                            {photo.comments ? photo.comments.map(comment => {
+                                return (
+                                    <div key={comment._id}>
+                                        <CardTitle title={`${comment.user.first_name}`} subtitle={comment.date_time} />
+                                        <CardText >
+                                            {comment.comment}
+                                        </CardText>
+                                        <Divider />
+                                    </div>
+                                );
+                            }) : null}
                         </Card>
                     </div>
                 </Card>
-                 {/* {this.state.displayLightBox ? <LightBox photo={photo} closeHandler={this.closeLightbox} /> : null}  */}
+                {/* {this.state.displayLightBox ? <LightBox photo={photo} closeHandler={this.closeLightbox} /> : null}  */}
             </div>
         )
     }

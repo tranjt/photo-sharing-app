@@ -198,16 +198,19 @@ var comment13 = {
 export var comments = [comment1, comment2, comment3, comment4, comment5, comment6, comment7,
     comment8, comment9, comment10, comment11, comment12, comment13];
 
-comments.forEach(function (comment) {
-    var photo = photos.filter(function (photo) {
-        return (photo._id === comment.photo_id);
-    })[0]; //only one match. return the content of the match inside the array
+// Add comments to photos
+(function () {
+    comments.forEach(function (comment) {
+        var photo = photos.filter(function (photo) {
+            return (photo._id === comment.photo_id);
+        })[0]; //only one match. return the content of the match inside the array
 
-    if (!photo.comments) {
-        photo.comments = [];
-    }
-    photo.comments.push(comment);
-});
+        if (!photo.comments) {
+            photo.comments = [];
+        }
+        photo.comments.push(comment);
+    });
+})();
 
 export var userModel = function (userId) {
     for (var i = 0; i < users.length; i++) {
