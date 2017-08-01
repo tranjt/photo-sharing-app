@@ -44,7 +44,6 @@ class UserDetail extends React.Component {
           </div>
         </CardText>
 
-
         <div style={styles.cardContainer}>
           <StatusPhoto statusText="Lastest Mention in photo" />
           <StatusPhoto statusText="Latest uploaded photo" />

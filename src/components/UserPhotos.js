@@ -6,10 +6,17 @@ import { Card, CardTitle, CardMedia } from 'material-ui/Card';
 import { getPhotos } from "../actions/actions";
 
 const styles = {
-    button: { margin: 12 },
-    cardWrap: { flex: 1, marginRight: '1em' },
-    cardImg: { objectFit: "cover", height: " 250px" },
-    card: { marginBottom: "15px" }
+    cardWrap: {
+        flex: 1,
+        marginRight: '1em'
+    },
+    cardImg: {
+        objectFit: "cover",
+        height: " 250px"
+    },
+    card: {
+        marginBottom: "15px"
+    }
 }
 
 class UserPhotos extends React.Component {
