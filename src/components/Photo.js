@@ -13,31 +13,12 @@ const styles = {
 
 class Photo extends React.Component {
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         displayLightBox: false
-    //     }
-    //     this.openLightbox = this.openLightbox.bind(this);
-    //     this.closeLightbox = this.closeLightbox.bind(this);        
-    // }
-
 
     componentDidMount() {
         if (!this.props.preFetch) {
             this.props.getPhotos();
         }
     }
-
-    // openLightbox(event) {
-    //     event.preventDefault();
-    //     this.setState({ displayLightBox: true });
-    // }
-
-    // closeLightbox(event) {
-    //     event.stopPropagation();
-    //     this.setState({ displayLightBox: false });
-    // } 
 
     render() {
         const { photo } = this.props;
@@ -49,12 +30,12 @@ class Photo extends React.Component {
         return (
             <div>
                 <Card zDepth={2}  >
-                    <div style={styles.cardContainer} onClick={this.openLightbox}>
+                    <div style={styles.cardContainer} >
                         <Card style={styles.cardFixedWith} zDepth={1}>
                             <CardMedia >
                                 <img src={require(`../images/${photo.file_name}`)} alt="" />
                             </CardMedia>
-                            <div style={styles.comments}> {photo.comments ? `Comments (${photo.comments.length})` : "Comments (0)"}</div>
+                            <div style={styles.comments}> {photo.comments ? `(${photo.comments.length}) comments ` : "(0) comments"}</div>
                             {photo.comments ? photo.comments.map(comment => {
                                 return (
                                     <div key={comment._id}>
@@ -68,8 +49,17 @@ class Photo extends React.Component {
                             }) : null}
                         </Card>
                     </div>
+                    <div style={styles.cardContainer} >
+                        <Card style={styles.cardFixedWith} zDepth={2}>
+                            <form action="">
+                                <textarea name="" id="" cols="60" rows="10" ></textarea>
+                                <div>
+                                    <button>Post Comment</button>
+                                </div>
+                            </form>
+                        </Card>
+                    </div>
                 </Card>
-                {/* {this.state.displayLightBox ? <LightBox photo={photo} closeHandler={this.closeLightbox} /> : null}  */}
             </div>
         )
     }

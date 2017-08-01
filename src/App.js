@@ -60,8 +60,7 @@ class App extends Component {
               <Route
                 path={"/photos/:_id"}
                 component={UserPhotos}
-              />
-
+              />   
 
             </div>
           </div>

@@ -26,7 +26,7 @@ class UserPhotos extends React.Component {
         const { photos, user } = this.props;
 
         if (!photos || !user) {
-            return <div>Loading...</div>
+            return <div>No match</div>
         }
 
         return (
@@ -41,7 +41,7 @@ class UserPhotos extends React.Component {
                     <div className='row'>
                         {photos.map(photo => {
                             return (
-                                <div className='col s12 m3' key={photo._id} >
+                                <div className='col s12 m6 l3' key={photo._id} >
                                     <Card style={styles.card} zDepth={2}  >
                                         <Link to={`/users/${user._id}/photo/${photo._id}`}  >
                                             <CardMedia>
