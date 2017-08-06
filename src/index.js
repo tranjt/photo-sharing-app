@@ -6,7 +6,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { Provider } from "react-redux";
 import registerServiceWorker from './registerServiceWorker';
-
+import { getUsers } from "./actions/actions";
 import './index.css';
 import App from './App';
 import rootReducer from "./reducers/rootReducer";
@@ -17,6 +17,10 @@ const store = createStore(
         applyMiddleware(thunk)
     )
 );
+
+
+
+store.dispatch(getUsers());
 
 ReactDOM.render(
      <BrowserRouter>

@@ -9,18 +9,21 @@ import { connect } from "react-redux";
 
 class UserList extends React.Component {
 
-    componentDidMount() {
-        this.props.getUsers();
-    }
-
     render() {
-        const users = this.props.users;
+        
+        const { users } = this.props;        
 
         return (
             <div>
                 <Menu>
+                    <MenuItem
+                        exact={true}                        
+                        primaryText={"Home"}                        
+                        containerElement={<NavLink to={"/"} />}
+                    />
                     {users.map(user => {
                         return (
+
                             <MenuItem
                                 exact={true}
                                 key={`${user._id}`}
@@ -35,7 +38,6 @@ class UserList extends React.Component {
         );
     }
 }
-
 
 function mapStateToProps(state) {
     return {

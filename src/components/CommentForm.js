@@ -12,7 +12,7 @@ const styles = {
         margin: "20px"
     },
     button: {
-        margin: 12
+        margin: 5
     },
 }
 
