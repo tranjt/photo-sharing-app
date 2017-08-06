@@ -34,6 +34,17 @@ userSchema.pre("save", function (next) {
     });
 });
 
+
+// whenever a User object is created, it will have access to any methods defined on methods
+userSchema.methods.comparePassword = function (candidatePassword, callback) {
+    // bcrypt will handle hashing and compare this.password, comes from the "user" caller
+    bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
+        if (err) { return callback(err); }
+
+        callback(null, isMatch);
+    })
+}
+
 const User = mongoose.model("user", userSchema);
 
 export default User;
