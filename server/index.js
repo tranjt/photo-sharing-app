@@ -3,11 +3,20 @@ import http from "http";
 import bodyParser from "body-parser";
 import morgan from "morgan";
 import router from "./router";
+import mongoose from "mongoose";
+
+// DB setup create new database named "photoSharingApp"
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost:27017/photoSharingApp", {
+    useMongoClient: true
+})
+    .then(() => console.log("connection succesful"))
+    .catch((err) => console.error(err));
 
 // App setup
 const app = express();
 app.use(morgan("combined"));
-app.use(bodyParser.json({ type: "*/*"}));
+app.use(bodyParser.json({ type: "*/*" }));
 router(app);
 
 // Server setup
