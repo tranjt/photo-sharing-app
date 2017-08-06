@@ -1,4 +1,13 @@
 import User from "../models/user";
+import jwt from "jwt-simple";
+import { secret } from "../config";
+
+
+function tokenForUser(user) {
+    const timestamp = new Date().getTime();
+    // "sub" subject jwt, "iat" issue at time 
+    return jwt.encode({ sub: user.id, iat: timestamp }, secret);
+}
 
 export function signup(req, res, next) {
     const email = req.body.email;
@@ -12,7 +21,7 @@ export function signup(req, res, next) {
             if (existingUser) {
                 return res.status(422).send({ error: "Email is already in use." });
             }
-             // If a user with email does NOT exist, create and save user record
+            // If a user with email does NOT exist, create and save user record
             const user = new User({
                 email,
                 password
@@ -22,7 +31,8 @@ export function signup(req, res, next) {
                 if (err) { return next(err); }
             });
             // Respond to request indicating the user was created
-            res.json({ msg: "User created" });
+            res.json({ token: tokenForUser(user) });
+
         }).catch(err => {
             return next(err);
         });
