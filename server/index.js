@@ -7,7 +7,15 @@ import mongoose from "mongoose";
 
 // DB setup create new database named "photoSharingApp"
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/photoSharingApp", {
+
+// mongoose.connect("mongodb://localhost:27017/photoSharingApp", {
+//     useMongoClient: true
+// })
+//     .then(() => console.log("connection succesful"))
+//     .catch((err) => console.error(err));
+
+
+mongoose.connect("mongodb://localhost/cs142project6", {
     useMongoClient: true
 })
     .then(() => console.log("connection succesful"))
