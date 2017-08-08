@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import morgan from "morgan";
 import router from "./router";
 import mongoose from "mongoose";
+import path from "path";
 
 // DB setup create new database named "photoSharingApp"
 mongoose.Promise = global.Promise;
@@ -25,6 +26,7 @@ mongoose.connect("mongodb://localhost/cs142project6", {
 const app = express();
 app.use(morgan("combined"));
 app.use(bodyParser.json({ type: "*/*" }));
+app.use(express.static(path.join(__dirname, 'public')));
 router(app);
 
 // Server setup
