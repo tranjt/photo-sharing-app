@@ -1,17 +1,11 @@
-import { SET_PHOTOS } from "../actions/actions";
+import { SET_PHOTOS } from "../actions/actions"; 
 
-const INITIAL_STATE = { all: [], preFetch: false }
-
-export default function photos(state = INITIAL_STATE, action = {}) {
+export default function photos(state = [], action = {}) {
     switch (action.type) {
         case SET_PHOTOS:
-            return {
-                all: [
-                    ...state.all,
+            return [                    
                     ...action.photos
-                ],
-                preFetch: true
-            };
+                ];           
         default:
             return state;
     }

@@ -5,6 +5,7 @@ import StatusPhoto from "./StatusPhoto";
 import InfoCard from "./InfoCard";
 import DescriptionCard from "./DescriptionCard";
 import ActivitiesCard from "./ActivitiesCard";
+import { getUser } from "../actions/actions";
 
 const styles = {
   cardFixedWith: {
@@ -18,6 +19,16 @@ const styles = {
 }
 
 class UserDetail extends React.Component {
+
+  componentWillMount() {
+    this.props.getUser(this.props.match.params._id);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params._id !== this.props.match.params._id) {
+      this.props.getUser(nextProps.match.params._id);
+    }
+  }
 
   render() {
 
@@ -56,12 +67,13 @@ class UserDetail extends React.Component {
 }
 
 function mapStateToProps(state, props) {
-  if (props.match) {
-    return {
-      user: state.users.find(user => user._id === props.match.params._id)
-    }
+  // if (props.match) {
+  return {
+    // user: state.users.find(user => user._id === props.match.params._id)
+    user: state.users.user
+    // }
   }
 }
 
-export default connect(mapStateToProps)(UserDetail);
+export default connect(mapStateToProps, { getUser })(UserDetail);
 

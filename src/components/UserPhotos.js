@@ -21,10 +21,8 @@ const styles = {
 
 class UserPhotos extends React.Component {
 
-    componentDidMount() {
-        if (!this.props.preFetch) {
-            this.props.getPhotos();
-        }
+    componentWillMount() {
+        this.props.getPhotos(this.props.match.params._id);
     }
 
     render() {
@@ -35,7 +33,8 @@ class UserPhotos extends React.Component {
         if (!photos || !user) {
             return <div>No match</div>
         }
-
+        console.log(photos);
+        console.log(user);
         return (
 
             <Card style={styles.cardWrap}>
@@ -70,9 +69,8 @@ class UserPhotos extends React.Component {
 function mapStateToProps(state, props) {
     if (props.match.params._id) {
         return {
-            photos: state.photos.all.filter(photo => photo.user_id === props.match.params._id),
-            user: state.users.find(user => user._id === props.match.params._id),
-            preFetch: state.photos.preFetch
+            photos: state.photos.filter(photo => photo.user_id === props.match.params._id),
+            user: state.users.all.find(user => user._id === props.match.params._id),            
         }
     }
 }

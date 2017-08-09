@@ -26,7 +26,16 @@ export default function router(app) {
             .then(users => {
                 if (!users) { return res.status(400).send('Users not found'); }
 
-                res.status(200).send(users);
+                // res.status(200).send(users);
+                const userList = users.map(user => {
+                    return {
+                        _id: user._id,
+                        first_name: user.first_name,
+                        last_name: user.last_name
+                    }
+                });
+                res.status(200).send(userList);
+
             }).catch(err => {
                 return next(err);
             });
@@ -40,7 +49,7 @@ export default function router(app) {
 
         User.findById({ _id })
             .then(user => {
-                if (!user) { return res.status(400).send('User not found'); }                
+                if (!user) { return res.status(400).send('User not found'); }
                 res.status(200).send(user);
             }).catch(err => {
                 return next(err);
