@@ -3,9 +3,7 @@ import { NavLink } from "react-router-dom";
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import ActionAccountCircle from "material-ui/svg-icons/action/account-circle";
-import { getUsers } from "../actions/actions";
 import { connect } from "react-redux";
-
 
 class UserList extends React.Component {
 
@@ -45,4 +43,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getUsers })(UserList);
+export default connect(mapStateToProps)(UserList);

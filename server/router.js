@@ -25,14 +25,8 @@ export default function router(app) {
         User.find({})
             .then(users => {
                 if (!users) { return res.status(400).send('Users not found'); }
-                const usersList = users.map(user => {
-                    return {
-                        id: user._id,
-                        first_name: user.first_name,
-                        last_name: user.last_name
-                    };
-                });
-                res.status(200).send(usersList);
+
+                res.status(200).send(users);
             }).catch(err => {
                 return next(err);
             });
