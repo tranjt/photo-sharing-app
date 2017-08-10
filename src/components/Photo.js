@@ -18,16 +18,7 @@ const styles = {
 
 class Photo extends React.Component {
 
-    // componentDidMount() {
-    //     if (!this.props.preFetch) {
-    //         this.props.getPhotos();
-    //     }
-    // }
-    //     componentWillMount() {
-        
-    //         this.props.getPhotos();
-        
-    // }
+
 
     render() {
         const { photo } = this.props;
@@ -58,8 +49,7 @@ class Photo extends React.Component {
 function mapStateToProps(state, props) {
     if (props.match.params._id) {
         return {
-            photo: state.photos.find(photo => photo._id === props.match.params._id),
-            // preFetch: state.photos.preFetch
+            photo: state.photos.find(photo => photo._id === props.match.params._id)            
         }
     }
 }

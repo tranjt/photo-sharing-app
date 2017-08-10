@@ -8,14 +8,12 @@ export default function users(state = INITIAL_STATE, action = {}) {
             return {
                 ...state,
                 all: action.users
-
             };
         case SET_USER:
             return {
                 ...state,
                 user: action.user
             };
-
         default:
             return state;
     }

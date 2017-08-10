@@ -67,11 +67,8 @@ class UserDetail extends React.Component {
 }
 
 function mapStateToProps(state, props) {
-  // if (props.match) {
   return {
-    // user: state.users.find(user => user._id === props.match.params._id)
     user: state.users.user
-    // }
   }
 }
 
