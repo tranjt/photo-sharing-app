@@ -50,8 +50,8 @@ class UserPhotos extends React.Component {
                                 <div className='col s12 m6 l3' key={photo._id} >
                                     <Card style={styles.card} zDepth={2}  >
                                         <Link to={`/users/${user._id}/photo/${photo._id}`}  >
-                                            <CardMedia>
-                                                <img src={require(`../images/${photo.file_name}`)} alt="" style={styles.cardImg} />
+                                            <CardMedia>                                                
+                                                <img src={`/images/${photo.file_name}`} alt="" style={styles.cardImg} />
                                             </CardMedia>
                                         </Link>
                                         <CardTitle title={`${photo.file_name}`} subtitle={`Created: ${photo.date_time}`} />

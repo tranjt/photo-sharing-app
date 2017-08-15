@@ -31,7 +31,7 @@ class UserList extends React.Component {
                                 key={`${user._id}`}
                                 primaryText={`${user.first_name}`}
                                 leftIcon={<ActionAccountCircle />}
-                                containerElement={<NavLink to={`/users/${user._id}`} />}
+                                containerElement={<NavLink to={`/users/${user._id}`} />}                                
                             />
                         );
                     })}

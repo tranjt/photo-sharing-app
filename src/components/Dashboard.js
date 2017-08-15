@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import { Card, CardHeader, CardText, } from 'material-ui/Card';
 import StatusPhoto from "./StatusPhoto";
 import InfoCard from "./InfoCard";
