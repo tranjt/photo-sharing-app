@@ -1,6 +1,6 @@
-import { SET_USERS, SET_USER } from "../actions/actions";
+import { SET_USERS, SET_USER, AUTH_USER, UNAUTH_USER } from "../actions/actions";
 
-const INITIAL_STATE = { all: [], user: null, authenticated: false }
+const INITIAL_STATE = { all: [], user: null, authUser:null, authenticated: false, error: null }
 
 export default function users(state = INITIAL_STATE, action = {}) {
     switch (action.type) {
@@ -14,6 +14,18 @@ export default function users(state = INITIAL_STATE, action = {}) {
                 ...state,
                 user: action.user
             };
+        case AUTH_USER:
+         return {
+             ...state,
+              authenticated: true,
+              authUser: action.user
+         };
+         case UNAUTH_USER:
+         return {
+             ...state,
+              authenticated: false,
+              authUser: null
+         };
         default:
             return state;
     }

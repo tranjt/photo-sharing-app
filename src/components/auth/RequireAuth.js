@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 export default function(CompesedComponent) {
-    class RequireAuth extends React.Component { 
+    class Authentication extends React.Component { 
 
         componentWillMount() {
             if (!this.props.authenticated) {
@@ -24,5 +24,5 @@ export default function(CompesedComponent) {
         return { authenticated: state.users.authenticated };
     }
 
-    return connect(mapStateToProps)(RequireAuth);
+    return connect(mapStateToProps)(Authentication);
 }

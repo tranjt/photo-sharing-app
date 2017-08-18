@@ -1,9 +1,10 @@
-// import { users, photos } from "../api/tempUserData";
 import axios from "axios";
 
 export const SET_USERS = "SET_USERS";
 export const SET_USER = "SET_USER";
 export const SET_PHOTOS = "SET_PHOTOS";
+export const AUTH_USER = "AUTH_USER";
+export const UNAUTH_USER = "UNAUTH_USER";
 
 export function setUsers(users) {
     return {
@@ -23,6 +24,20 @@ function setPhotos(photos) {
     return {
         type: SET_PHOTOS,
         photos
+    }
+}
+
+function authUser(user) {
+    return {
+        type: AUTH_USER,
+        user
+    }
+}
+
+export function unauthUser() {
+    // delete token
+    return {
+        type: UNAUTH_USER        
     }
 }
 
@@ -71,5 +86,17 @@ export function getPhotos(id) {
 }
 
 
+export function signinUser(user) {
+    return dispatch => {
+        axios.post("/signin", user)
+            .then(response => {
+                console.log(response.data.user);
+                dispatch(authUser(response.data.user));
+            })
+            .catch(err => {
+                console.log(err.response.data);
+            });
+    }
+}
 
 

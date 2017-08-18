@@ -33,8 +33,8 @@ class UserPhotos extends React.Component {
         if (!photos || !user) {
             return <div>No match</div>
         }
-        console.log(photos);
-        console.log(user);
+        // console.log(photos);
+        // console.log(user);
         return (
 
             <Card style={styles.cardWrap}>

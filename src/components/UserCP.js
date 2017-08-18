@@ -17,13 +17,13 @@ const styles = {
   }
 }
 
-class Dashboard extends React.Component {
+class UserCP extends React.Component {
 
   render() {
 
-    const { user } = this.props;
+    const { authUser } = this.props;
 
-    if (!user) {
+    if (!authUser) {
       return <div>No match</div>
     }
 
@@ -31,16 +31,16 @@ class Dashboard extends React.Component {
 
       <Card >
         <CardHeader
-          title={`${user.first_name} ${user.last_name}`}
+          title={`${authUser.first_name} ${authUser.last_name}`}
           subtitle="Detail page"
           avatar="http://www.material-ui.com/images/jsa-128.jpg"
         />
 
         <CardText>
           <div style={styles.cardContainer}>
-            <ActivitiesCard user={user} />
-            <DescriptionCard user={user} />
-            <InfoCard user={user} />
+            <ActivitiesCard user={authUser} />
+            <DescriptionCard user={authUser} />
+            <InfoCard user={authUser} />
           </div>
         </CardText>
 
@@ -56,5 +56,5 @@ class Dashboard extends React.Component {
 }
 
 
-export default Dashboard;
+export default UserCP;
 

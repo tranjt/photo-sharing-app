@@ -15,7 +15,7 @@ export default function router(app) {
     //     res.send({ hi: "there" });
     // });
 
-    // app.post("/signin", requireSignin, signin)
+    app.post("/signin", requireSignin, signin);
 
     // app.post("/signup", signup);
 

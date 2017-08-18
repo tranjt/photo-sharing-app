@@ -5,18 +5,16 @@ import { ExtractJwt, Strategy as JwtStrategy } from "passport-jwt"
 import LocalStrategy from "passport-local";
 
 // local strategy will look in the body of req to find "username" "password" field automatic "expected"
-// usernameField we will use "email" instead
-const localOptions = { usernameField: "email" }
-const localLogin = new LocalStrategy(localOptions, function (email, password, done) {
-    // verify this email and password, call done with the user
-    // if it is the correct email and password
-    // otherwise, call done with false
-    User.findOne({ email: email }, function (err, user) {
+const localLogin = new LocalStrategy(function (username, password, done) {
+    // verify this username and password, call done with the user
+    // if it is the correct username and password
+    // otherwise, call done with false    
+    User.findOne({ login_name: username.toLowerCase() }, function (err, user) {
         if (err) { return done(err); }
 
         if (!user) { return done(null, false); }
 
-        // compare password is "password" equal to user.password?
+        // compare password is "password" equal to user.password
         user.comparePassword(password, function (err, isMatch) {
             if (err) { return done(err); } // error case 
             if (!isMatch) { return done(null, false); } // no user found
