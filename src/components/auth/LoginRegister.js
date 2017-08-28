@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form'
 import { signinUser } from "../../actions/actions";
 import RaisedButton from 'material-ui/RaisedButton';
 import LoginForm from "../LoginForm";
+import LoginFormMUI from "../LoginFormMUI";
 import '../../styles/bootstrap.min.css'
 import '../../App.css'
 const styles = {
@@ -46,13 +47,7 @@ class LoginRegister extends React.Component {
 
     render() {
         return (
-            <div className="container loginForm">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
-                        <LoginForm  onSubmit={this.handFormSubmit.bind(this)} />
-                    </div>
-                </div>
-            </div >
+            <LoginFormMUI  onSubmit={this.handFormSubmit.bind(this)} />
         );
     }
 }

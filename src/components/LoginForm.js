@@ -17,7 +17,7 @@ class LoginForm extends React.Component {
         if (this.props.errorMessage) {
             return (
                 <div className="alert alert-danger">
-                    <strong>Oops!</strong> {this.props.errorMessage}
+                    <strong>Oops!</strong> {this.props.errors.errorMessage}
                 </div>
             );
         }
@@ -25,12 +25,13 @@ class LoginForm extends React.Component {
 
     render() {
 
-        const { handleSubmit } = this.props
+        const { handleSubmit,  } = this.props
+        
 
         return (
             <form onSubmit={handleSubmit}>
                 <Field component="input"
-                    name="Username"
+                    name="username"
                     id="username"
                     type="text"
                     placeholder="Username"
@@ -70,7 +71,8 @@ function validate(formProps) {
 
 
 export default reduxForm({
-    form: "signin"
+    form: "signin",
+    validate
 })(LoginForm);
 
 
