@@ -79,7 +79,7 @@ export default function router(app) {
 
                 const photocopy = JSON.parse(JSON.stringify(photos));
                 async.each(photocopy, function (photo, photoCallback) {
-                    
+
                     async.each(photo.comments, function (comment, commentCallback) {
                         User.findOne({ _id: comment.user_id })
                             // _id, first_name, last_name
@@ -125,3 +125,9 @@ export default function router(app) {
             });
     });
 }
+
+
+// app.post("/commentsOfPhoto/:photo_id", requireAuth, function (req, res) {
+//     // res.send({ hi: "there" });
+//     res.send({ hi: "there" });
+// });

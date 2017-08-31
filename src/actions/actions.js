@@ -5,6 +5,7 @@ export const SET_USER = "SET_USER";
 export const SET_PHOTOS = "SET_PHOTOS";
 export const AUTH_USER = "AUTH_USER";
 export const UNAUTH_USER = "UNAUTH_USER";
+export const FAILED_LOGGIN = "FAILED_LOGGIN";
 
 export function setUsers(users) {
     return {
@@ -27,7 +28,7 @@ function setPhotos(photos) {
     }
 }
 
-function authUser(user) {
+export function authUser(user) {
     return {
         type: AUTH_USER,
         user
@@ -35,9 +36,19 @@ function authUser(user) {
 }
 
 export function unauthUser() {
-    // delete token
+    // delete token and user on logout
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     return {
         type: UNAUTH_USER        
+    }
+}
+
+export function failedLogin(error) {
+    
+    return {
+        type: FAILED_LOGGIN,
+        error
     }
 }
 
@@ -89,12 +100,14 @@ export function getPhotos(id) {
 export function signinUser(user) {
     return dispatch => {
         axios.post("/signin", user)
-            .then(response => {
-                console.log(response.data.user);
+            .then(response => {                
+                localStorage.setItem("token", response.data.token);
+                localStorage.setItem('user', JSON.stringify(user));
                 dispatch(authUser(response.data.user));
+
             })
-            .catch(err => {
-                console.log(err.response.data);
+            .catch(err => {                                
+                dispatch(failedLogin(err.response.data));
             });
     }
 }

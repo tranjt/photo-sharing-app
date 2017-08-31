@@ -6,15 +6,6 @@ import '../App.css'
 
 import TextField from 'material-ui/TextField'
 import { Card, CardActions } from 'material-ui/Card';
-// import FlatButton from 'material-ui/FlatButton';
-
-// const styles = {
-//     master: { flex: 1, padding: '10px', paddingLeft: "268px", background: "#f1f1f1", height: "90vh" },
-//     masterWrap: { paddingTop: 64 },
-//     drawer: { height: 'calc(100% - 64px)', top: 64 },
-//     appBar: { position: "fixed" }
-// }
-
 
 const styles = {
     main: {
@@ -71,15 +62,15 @@ class LoginFormMUI extends React.Component {
         if (this.props.errorMessage) {
             return (
                 <div className="alert alert-danger">
-                    <strong>Oops!</strong> {this.props.errorMessage}
+                    <strong>Error!</strong> {this.props.errorMessage} 
+                    <p>Incorrect Username/Password </p>
                 </div>
             );
         }
     }
 
     render() {
-
-        const { handleSubmit } = this.props
+        const { handleSubmit } = this.props        
 
         return (
 
@@ -107,7 +98,9 @@ class LoginFormMUI extends React.Component {
                                 />
                             </div>
                         </div>
+
                         <CardActions>
+                            {this.renderAlert()}
                             <RaisedButton type="submit" label="login" className="button-submit" primary={true} fullWidth />
                         </CardActions>
                     </form>

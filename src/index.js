@@ -11,6 +11,7 @@ import './index.css';
 import App from './App';
 import rootReducer from "./reducers/rootReducer";
 import history from "./myHistory";
+import { authUser } from "./actions/actions"
 
 const store = createStore(
     rootReducer,
@@ -18,6 +19,14 @@ const store = createStore(
         applyMiddleware(thunk)
     )
 );
+
+const token = localStorage.getItem("token");
+const user = localStorage.getItem('user');
+// if we have a token, user, consider the user to be signed in
+if (token && user) {    
+    // we need to update application state  
+    store.dispatch(authUser(JSON.parse(user)));
+}
 
 ReactDOM.render(
     <Router history={history}>

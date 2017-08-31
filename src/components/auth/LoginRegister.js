@@ -1,18 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Field, reduxForm } from 'redux-form'
 import { signinUser } from "../../actions/actions";
-import RaisedButton from 'material-ui/RaisedButton';
-import LoginForm from "../LoginForm";
+
 import LoginFormMUI from "../LoginFormMUI";
 import '../../styles/bootstrap.min.css'
 import '../../App.css'
-const styles = {
-    master: { flex: 1, padding: '10px', paddingLeft: "268px", background: "#f1f1f1", height: "90vh" },
-    masterWrap: { paddingTop: 64 },
-    drawer: { height: 'calc(100% - 64px)', top: 64 },
-    appBar: { position: "fixed" }
-}
 
 
 class LoginRegister extends React.Component {
@@ -30,8 +22,6 @@ class LoginRegister extends React.Component {
     }
 
     handFormSubmit({ username, password }) {
-        console.log(username, password);
-        // Need to do something to log user in
         this.props.signinUser({ username, password });
     }
 
@@ -47,7 +37,7 @@ class LoginRegister extends React.Component {
 
     render() {
         return (
-            <LoginFormMUI  onSubmit={this.handFormSubmit.bind(this)} />
+            <LoginFormMUI onSubmit={this.handFormSubmit.bind(this)} errorMessage={this.props.errorMessage} />
         );
     }
 }
@@ -55,24 +45,10 @@ class LoginRegister extends React.Component {
 function mapStateToProps(state) {
     return {
         authenticated: state.users.authenticated,
-        errorMessage: state.users.error
+        errorMessage: state.users.errorMessage
     };
 }
 
-function validate(formProps) {
-    const errors = {};
-
-    if (!formProps.username) {
-        errors.username = "Please enter an username"
-    }
-
-    if (!formProps.password) {
-        errors.password = "Please enter an password"
-    }
-
-    return errors;
-}
-
-export default connect( mapStateToProps, { signinUser })(LoginRegister);
+export default connect(mapStateToProps, { signinUser })(LoginRegister);
 
 
